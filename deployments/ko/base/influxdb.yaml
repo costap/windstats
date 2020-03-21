@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: influxdb
+data:
+  username: "windstats"
+  database: "windstats"
+  adminuser: "influxdb"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb
+spec:
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb
+spec:
+  ports:
+  - port: 8086
+  selector:
+    app: influxdb
+  clusterIP: None
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: influxdb
+data:
+  password: d2luZHN0YXRzCg==
+  adminpass: aW5mbHV4ZGIK
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: influxdb
+  name: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: influxdb
+  template:
+    metadata:
+      labels:
+        run: influxdb
+    spec:
+      containers:
+      - image: influxdb
+        name: influxdb
+        env:
+        - name: INFLUXDB_DB
+          valueFrom:
+            configMapKeyRef:
+              key: database
+              name: influxdb
+        - name: INFLUXDB_USER
+          valueFrom:
+            configMapKeyRef:
+              key: username
+              name: influxdb
+        - name: INFLUXDB_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: influxdb
+        - name: INFLUXDB_ADMIN_USER
+          valueFrom:
+            configMapKeyRef:
+              key: adminuser
+              name: influxdb
+        - name: INFLUXDB_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: adminpass
+              name: influxdb
+        resources: {}
+        ports:
+        - containerPort: 8086
+          name: http
+        volumeMounts:
+        - name: influxdb-persistent-storage
+          mountPath: /var/lib/influxdb
+      volumes:
+      - name: influxdb-persistent-storage
+        persistentVolumeClaim:
+          claimName: influxdb

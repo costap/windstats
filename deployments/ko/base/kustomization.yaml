@@ -1,0 +1,8 @@
+commonAnnotations:
+  product: windstats
+
+resources:
+  - namespace.yaml
+  - influxdb.yaml
+
+namespace: windstats

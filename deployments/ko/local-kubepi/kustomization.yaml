@@ -1,0 +1,10 @@
+commonAnnotations:
+  env: "localkubepi"
+
+resources:
+  - ../base
+  # - ingress.yaml
+
+namespace: windstats
+
+  
