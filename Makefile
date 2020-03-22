@@ -9,4 +9,4 @@ generate:
 	@protoc internal/repository/repository.proto --go_out=plugins=grpc:.
 
 pf-db:
-	@kubectl port-forward -n windstats svc/influxdb 5432
+	@kubectl port-forward -n windstats svc/influxdb 8086
