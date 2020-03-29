@@ -9,4 +9,7 @@ generate:
 	@protoc internal/repository/repository.proto --go_out=plugins=grpc:.
 
 pf-db:
-	@kubectl port-forward -n windstats svc/influxdb 8086
+	@kubectl port-forward -n windstats deploy/influxdb 8086
+
+run:
+	@export WINDSTATS_DBADDR=http://localhost:8086; go run cmd/windstatsd/* cmd/windstatsd/app/*
