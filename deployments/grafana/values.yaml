@@ -1,0 +1,13 @@
+image:
+  tag: 6.7.1
+persistence:
+  enabled: true
+  storageClassName: local-path
+ingress:
+  enabled: false
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi

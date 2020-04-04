@@ -42,17 +42,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: influxdb
+    app: influxdb
   name: influxdb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: influxdb
+      app: influxdb
   template:
     metadata:
       labels:
-        run: influxdb
+        app: influxdb
     spec:
       containers:
       - image: influxdb

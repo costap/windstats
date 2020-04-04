@@ -1,0 +1,1 @@
+CREATE CONTINUOUS QUERY "cq_wind_5m" ON "windstats" BEGIN SELECT mean(*), max("speed") AS "max_speed", min("speed") AS "min_speed" INTO "wind_5m" FROM "wind" GROUP BY time(5m) END

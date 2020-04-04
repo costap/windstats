@@ -4,5 +4,6 @@ commonAnnotations:
 resources:
   - namespace.yaml
   - influxdb.yaml
+  - windstatsd.yaml
 
 namespace: windstats

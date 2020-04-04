@@ -2,6 +2,9 @@
 list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
+start-registry:
+	@docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
 apply:
 	@export KO_DOCKER_REPO=registry:5000; kustomize build deployments/ko/local-kubepi | ko apply --insecure-registry -f -
 
