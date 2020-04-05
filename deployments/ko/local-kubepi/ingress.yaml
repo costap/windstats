@@ -1,8 +1,22 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: api-ingress
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: traefik
+  name: grafana
+  namespace: grafana
 spec:
-  backend:
-    serviceName: jsa-api
-    servicePort: 8080
+  tls:
+  - hosts:
+    - web.thewindgod.com
+    secretName: windstatsweb-tls
+  rules:
+  - host: web.thewindgod.com
+    http:
+      paths:
+      - backend:
+          serviceName: windstatsweb
+          servicePort: 8080
+        path: /
+

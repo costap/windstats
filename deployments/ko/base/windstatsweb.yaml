@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: windstatsweb
+data:
+  config.yaml: |-
+    listeningport: 8080
+    datarootpath: /var/run/ko
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: windstatsweb
+  name: windstatsweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: windstatsweb
+  template:
+    metadata:
+      labels:
+        app: windstatsweb
+    spec:
+      containers:
+      - image: github.com/costap/windstats/cmd/windstatsweb
+        name: windstatsweb
+        ports:
+        - containerPort: 8080
+        env:
+        - name: WEBAPP_CONFIG_PATH
+          value: /etc/windstatsweb/config.yaml
+        volumeMounts:
+        - name: config
+          mountPath: /etc/windstatsweb
+          readOnly: true
+        readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+        livenessProbe:
+            httpGet:
+              path: /healthy
+              port: 8080
+        resources:
+          limits:
+            memory: 64Mi
+          requests:
+            memory: 32Mi
+            cpu: 100m
+      volumes:
+       - name: config
+         configMap:
+           name: windstatsweb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: windstatsweb
+spec:
+  selector:
+    app: windstatsweb
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: windstatsweb
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: windstatsweb
+  targetCPUUtilizationPercentage: 80

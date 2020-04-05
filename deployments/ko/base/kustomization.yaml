@@ -5,5 +5,7 @@ resources:
   - namespace.yaml
   - influxdb.yaml
   - windstatsd.yaml
+  - windstatsweb.yaml
+  - cert-issuer.yaml
 
 namespace: windstats
