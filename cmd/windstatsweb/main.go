@@ -8,7 +8,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/logicnow/smp-poc/internal/webapp"
+	"github.com/costap/windstats/internal/webapp"
 )
 
 // Authorization: Bearer eyJrIjoiNXduUDJrbkE1UGllY2FpTFZnYnNJaUZzMEZCODRQSDkiLCJuIjoid2luZGdvZCIsImlkIjoxfQ==
@@ -25,6 +25,9 @@ func main() {
 
 	t := template.Must(template.ParseFiles(path.Join(cfg.DataRootPath, "template/index.html")))
 	c := controller{t: t}
+
+	fs := http.FileServer(http.Dir(path.Join(cfg.DataRootPath, "static")))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", c.index)
 	http.HandleFunc("/ready", c.ready)

@@ -9,7 +9,7 @@ data:
     dbname: windstats
     dbpass: windstats
     apiaddr: http://88.97.23.70:81
-    refresh: "60"
+    refresh: "3"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,7 +34,7 @@ spec:
         - containerPort: 8080
         env:
         - name: WINDSTATS_CONFIG_PATH
-          value: /etc/windstads/config.yaml
+          value: /etc/windstads
         volumeMounts:
         - name: config
           mountPath: /etc/windstads

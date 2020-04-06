@@ -30,7 +30,7 @@ spec:
         - containerPort: 8080
         env:
         - name: WEBAPP_CONFIG_PATH
-          value: /etc/windstatsweb/config.yaml
+          value: /etc/windstatsweb
         volumeMounts:
         - name: config
           mountPath: /etc/windstatsweb
@@ -63,7 +63,7 @@ spec:
     app: windstatsweb
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
       name: http
 ---

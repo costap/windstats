@@ -3,7 +3,7 @@ commonAnnotations:
 
 resources:
   - ../base
-  # - ingress.yaml
+  - ingress.yaml
 
 namespace: windstats
 
