@@ -16,6 +16,6 @@ spec:
       paths:
       - backend:
           serviceName: windstatsweb
-          servicePort: 8080
+          servicePort: 80
         path: /
 
