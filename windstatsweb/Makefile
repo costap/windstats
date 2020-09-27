@@ -7,10 +7,16 @@ build-init:
 	@docker buildx inspect --bootstrap
 
 build:
-	@docker buildx build --platform linux/amd64,linux/arm/v7 -f deployments/docker/Dockerfile --output type=image,name=host.docker.internal:5000/windstats-web:latest,push=true,registry.insecure=true .
+	@docker buildx build --platform linux/arm/v7 -f deployments/docker/Dockerfile --load -t 888435310358.dkr.ecr.eu-west-1.amazonaws.com/windstats/windstatsweb:latest .
+	@docker push 888435310358.dkr.ecr.eu-west-1.amazonaws.com/windstats/windstatsweb:latest
 
 run:
 	@docker run --name windstatsweb -d -p 8080:80 registry:5000/windstats-web:latest
 
 create-builder:
 	@docker buildx create --name testbuilder
+
+ecr-login:
+	@aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 888435310358.dkr.ecr.eu-west-1.amazonaws.com
+ecr-create-repo: ecr-login
+	@aws ecr create-repository --repository-name windstats/windstatsweb

@@ -1,0 +1,548 @@
+   0.0 TEL | Telepresence 0.104 launched at Sun Apr 12 17:24:28 2020
+   0.0 TEL |   /usr/local/bin/telepresence --run ng serve
+   0.0 TEL | uname: uname_result(system='Darwin', node='PCOSTA-MB.local', release='19.4.0', version='Darwin Kernel Version 19.4.0: Wed Mar  4 22:28:40 PST 2020; root:xnu-6153.101.6~15/RELEASE_X86_64', machine='x86_64', processor='i386')
+   0.0 TEL | Platform: darwin
+   0.0 TEL | WSL: False
+   0.0 TEL | Python 3.7.7 (default, Mar 10 2020, 15:43:33)
+   0.0 TEL | [Clang 11.0.0 (clang-1100.0.33.17)]
+   0.0 TEL | BEGIN SPAN main.py:40(main)
+   0.0 TEL | BEGIN SPAN startup.py:83(set_kube_command)
+   0.0 TEL | Found kubectl -> /usr/local/bin/kubectl
+   0.0 TEL | [1] Capturing: kubectl config current-context
+   0.1 TEL | [1] captured in 0.06 secs.
+   0.1 TEL | [2] Capturing: kubectl --context kube-pi-remote version --short
+   0.4 TEL | [2] captured in 0.28 secs.
+   0.4 TEL | [3] Capturing: kubectl --context kube-pi-remote config view -o json
+   0.4 TEL | [3] captured in 0.06 secs.
+   0.4 TEL | [4] Capturing: kubectl --context kube-pi-remote get ns windstats
+   2.1 TEL | [4] captured in 1.63 secs.
+   2.1 TEL | [5] Capturing: kubectl --context kube-pi-remote api-versions
+   2.4 TEL | [5] captured in 0.32 secs.
+   2.4 TEL | Command: kubectl 1.17.3
+   2.4 TEL | Context: kube-pi-remote, namespace: windstats, version: 1.17.2+k3s1
+   2.4 TEL | END SPAN startup.py:83(set_kube_command)    2.3s
+   2.4 TEL | Found ssh -> /usr/bin/ssh
+   2.4 TEL | [6] Capturing: ssh -V
+   2.4 TEL | [6] captured in 0.01 secs.
+   2.4 TEL | Found ng -> /usr/local/bin/ng
+   2.4 TEL | Found sshuttle-telepresence -> /usr/local/Cellar/telepresence/0.104/libexec/sshuttle-telepresence
+   2.4 TEL | Found pfctl -> /sbin/pfctl
+   2.4 TEL | Found sudo -> /usr/bin/sudo
+   2.4 TEL | [7] Running: sudo -n echo -n
+   2.4   7 | sudo: a password is required
+   2.4 TEL | [7] exit 1 in 0.03 secs.
+   2.4 >>> | How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies
+   2.4 >>> | Invoking sudo. Please enter your sudo password.
+   2.4 TEL | [8] Running: sudo echo -n
+  15.3 TEL | [8] ran in 12.88 secs.
+  15.3 >>> | Starting proxy with method 'vpn-tcp', which has the following limitations: All processes are affected, only one telepresence can run per machine, and you can't use other VPNs. You may need to add cloud hosts and headless services with --also-proxy. For a full list of method limitations see https://telepresence.io/reference/methods.html
+  15.3 TEL | Found sshfs -> /usr/local/bin/sshfs
+  15.3 TEL | Found umount -> /sbin/umount
+  15.3 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
+  15.3 TEL | [9] Running: kubectl --context kube-pi-remote --namespace windstats get pods telepresence-connectivity-check --ignore-not-found
+  15.6 TEL | [9] ran in 0.28 secs.
+  17.4 TEL | Scout info: {'latest_version': '0.104', 'application': 'telepresence', 'notices': []}
+  17.4 TEL | BEGIN SPAN deployment.py:108(create_new_deployment)
+  17.4 >>> | Starting network proxy to cluster using new Deployment telepresence-1586708668-932211-28628
+  17.4 TEL | [10] Running: kubectl --context kube-pi-remote --namespace windstats delete --ignore-not-found svc,deploy --selector=telepresence=325a975adaac43ca91e3a98e9223f5c8
+  17.7  10 | No resources found
+  17.7 TEL | [10] ran in 0.30 secs.
+  17.7 TEL | [11] Running: kubectl --context kube-pi-remote --namespace windstats run --restart=Always --limits=cpu=1000m,memory=256Mi --requests=cpu=25m,memory=64Mi telepresence-1586708668-932211-28628 --image=datawire/telepresence-k8s:0.104 --labels=telepresence=325a975adaac43ca91e3a98e9223f5c8
+  17.9  11 | kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+  18.0  11 | deployment.apps/telepresence-1586708668-932211-28628 created
+  18.0 TEL | [11] ran in 0.35 secs.
+  18.0 TEL | END SPAN deployment.py:108(create_new_deployment)    0.7s
+  18.0 TEL | BEGIN SPAN remote.py:142(get_remote_info)
+  18.0 TEL | BEGIN SPAN remote.py:75(get_deployment_json)
+  18.0 TEL | [12] Capturing: kubectl --context kube-pi-remote --namespace windstats get deployment -o json --selector=telepresence=325a975adaac43ca91e3a98e9223f5c8
+  18.3 TEL | [12] captured in 0.24 secs.
+  18.3 TEL | END SPAN remote.py:75(get_deployment_json)    0.2s
+  18.3 TEL | Searching for Telepresence pod:
+  18.3 TEL |   with name telepresence-1586708668-932211-28628-*
+  18.3 TEL |   with labels {'telepresence': '325a975adaac43ca91e3a98e9223f5c8'}
+  18.3 TEL | [13] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod -o json --selector=telepresence=325a975adaac43ca91e3a98e9223f5c8
+  18.5 TEL | [13] captured in 0.22 secs.
+  18.5 TEL | Checking telepresence-1586708668-932211-28628-56b57d68dc-h2bh9
+  18.5 TEL | Looks like we've found our pod!
+  18.5 TEL | BEGIN SPAN remote.py:104(wait_for_pod)
+  18.5 TEL | [14] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  18.7 TEL | [14] captured in 0.22 secs.
+  19.0 TEL | [15] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  19.2 TEL | [15] captured in 0.24 secs.
+  19.5 TEL | [16] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  19.7 TEL | [16] captured in 0.22 secs.
+  19.9 TEL | [17] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  20.2 TEL | [17] captured in 0.23 secs.
+  20.4 TEL | [18] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  20.7 TEL | [18] captured in 0.24 secs.
+  20.9 TEL | [19] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  21.2 TEL | [19] captured in 0.25 secs.
+  21.4 TEL | [20] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  21.7 TEL | [20] captured in 0.25 secs.
+  21.9 TEL | [21] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  22.2 TEL | [21] captured in 0.24 secs.
+  22.4 TEL | [22] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  22.6 TEL | [22] captured in 0.23 secs.
+  22.9 TEL | [23] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  23.1 TEL | [23] captured in 0.25 secs.
+  23.4 TEL | [24] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  23.6 TEL | [24] captured in 0.24 secs.
+  23.9 TEL | [25] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  24.1 TEL | [25] captured in 0.26 secs.
+  24.4 TEL | [26] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  24.7 TEL | [26] captured in 0.29 secs.
+  25.0 TEL | [27] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  25.2 TEL | [27] captured in 0.24 secs.
+  25.4 TEL | [28] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  25.7 TEL | [28] captured in 0.25 secs.
+  26.0 TEL | [29] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  26.2 TEL | [29] captured in 0.25 secs.
+  26.5 TEL | [30] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  26.7 TEL | [30] captured in 0.23 secs.
+  26.9 TEL | [31] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  27.2 TEL | [31] captured in 0.25 secs.
+  27.4 TEL | [32] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  27.7 TEL | [32] captured in 0.24 secs.
+  27.9 TEL | [33] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  28.2 TEL | [33] captured in 0.25 secs.
+  28.4 TEL | [34] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  28.7 TEL | [34] captured in 0.24 secs.
+  28.9 TEL | [35] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  29.2 TEL | [35] captured in 0.26 secs.
+  29.4 TEL | [36] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  29.7 TEL | [36] captured in 0.23 secs.
+  29.9 TEL | [37] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  30.1 TEL | [37] captured in 0.23 secs.
+  30.4 TEL | [38] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  30.6 TEL | [38] captured in 0.23 secs.
+  30.9 TEL | [39] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  31.1 TEL | [39] captured in 0.22 secs.
+  31.4 TEL | [40] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  31.6 TEL | [40] captured in 0.24 secs.
+  31.9 TEL | [41] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  32.1 TEL | [41] captured in 0.24 secs.
+  32.3 TEL | [42] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  32.6 TEL | [42] captured in 0.25 secs.
+  32.9 TEL | [43] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  33.1 TEL | [43] captured in 0.22 secs.
+  33.3 TEL | [44] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  33.6 TEL | [44] captured in 0.22 secs.
+  33.8 TEL | [45] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  34.0 TEL | [45] captured in 0.23 secs.
+  34.3 TEL | [46] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  34.5 TEL | [46] captured in 0.25 secs.
+  34.8 TEL | [47] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  35.1 TEL | [47] captured in 0.34 secs.
+  35.4 TEL | [48] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  35.7 TEL | [48] captured in 0.27 secs.
+  35.9 TEL | [49] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  36.1 TEL | [49] captured in 0.23 secs.
+  36.4 TEL | [50] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  36.6 TEL | [50] captured in 0.23 secs.
+  36.9 TEL | [51] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  37.1 TEL | [51] captured in 0.23 secs.
+  37.4 TEL | [52] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  37.6 TEL | [52] captured in 0.24 secs.
+  37.9 TEL | [53] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  38.1 TEL | [53] captured in 0.24 secs.
+  38.4 TEL | [54] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  38.6 TEL | [54] captured in 0.26 secs.
+  38.9 TEL | [55] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  39.1 TEL | [55] captured in 0.22 secs.
+  39.3 TEL | [56] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  39.6 TEL | [56] captured in 0.27 secs.
+  39.9 TEL | [57] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  40.1 TEL | [57] captured in 0.23 secs.
+  40.4 TEL | [58] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  40.6 TEL | [58] captured in 0.25 secs.
+  40.9 TEL | [59] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  41.1 TEL | [59] captured in 0.25 secs.
+  41.4 TEL | [60] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  41.6 TEL | [60] captured in 0.23 secs.
+  41.8 TEL | [61] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  42.1 TEL | [61] captured in 0.24 secs.
+  42.3 TEL | [62] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  42.6 TEL | [62] captured in 0.24 secs.
+  42.8 TEL | [63] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  43.1 TEL | [63] captured in 0.23 secs.
+  43.3 TEL | [64] Capturing: kubectl --context kube-pi-remote --namespace windstats get pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 -o json
+  43.6 TEL | [64] captured in 0.24 secs.
+  43.6 TEL | END SPAN remote.py:104(wait_for_pod)   25.1s
+  43.6 TEL | END SPAN remote.py:142(get_remote_info)   25.5s
+  43.6 TEL | BEGIN SPAN connect.py:37(connect)
+  43.6 TEL | [65] Launching kubectl logs: kubectl --context kube-pi-remote --namespace windstats logs -f telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 --container telepresence-1586708668-932211-28628 --tail=10
+  43.6 TEL | [66] Launching kubectl port-forward: kubectl --context kube-pi-remote --namespace windstats port-forward telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 55381:8022
+  43.6 TEL | [67] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  43.6 TEL | [67] exit 255 in 0.01 secs.
+  43.8 TEL | [68] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  43.8 TEL | [68] exit 255 in 0.01 secs.
+  44.0  65 | standard_init_linux.go:211: exec user process caused "exec format error"
+  44.0 TEL | [65] kubectl logs: exit 0
+  44.0 TEL | Background process (kubectl logs) exited with return code 0. Command was:
+  44.0 TEL |   kubectl --context kube-pi-remote --namespace windstats logs -f telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 --container telepresence-1586708668-932211-28628 --tail=10
+  44.0 TEL | 
+  44.0 TEL | Recent output was:
+  44.0 TEL |   standard_init_linux.go:211: exec user process caused "exec format error"
+  44.1 TEL | [69] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  44.1 TEL | [69] exit 255 in 0.01 secs.
+  44.1  66 | Forwarding from 127.0.0.1:55381 -> 8022
+  44.1  66 | Forwarding from [::1]:55381 -> 8022
+  44.4 TEL | [70] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  44.4  66 | Handling connection for 55381
+  44.5  66 | E0412 17:25:13.451246   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:13 socat[23608] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  44.5 TEL | [70] exit 255 in 0.18 secs.
+  44.8 TEL | [71] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  44.8  66 | Handling connection for 55381
+  45.0  66 | E0412 17:25:13.882935   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:13 socat[23609] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  45.0 TEL | [71] exit 255 in 0.18 secs.
+  45.2 TEL | [72] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  45.2  66 | Handling connection for 55381
+  45.4  66 | E0412 17:25:14.310653   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:14 socat[23610] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  45.4 TEL | [73] Running: sudo -n echo -n
+  45.4 TEL | [72] exit 255 in 0.18 secs.
+  45.4 TEL | [73] ran in 0.03 secs.
+  45.7 TEL | [74] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  45.7  66 | Handling connection for 55381
+  45.8  66 | E0412 17:25:14.732954   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:14 socat[23611] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  45.8 TEL | [74] exit 255 in 0.17 secs.
+  46.1 TEL | [75] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  46.1  66 | Handling connection for 55381
+  46.2  66 | E0412 17:25:15.162867   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:15 socat[23612] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  46.3 TEL | [75] exit 255 in 0.18 secs.
+  46.5 TEL | [76] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  46.5  66 | Handling connection for 55381
+  46.7  66 | E0412 17:25:15.607423   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:15 socat[23613] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  46.7 TEL | [76] exit 255 in 0.18 secs.
+  46.9 TEL | [77] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  47.0  66 | Handling connection for 55381
+  47.1  66 | E0412 17:25:16.069328   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:16 socat[23614] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  47.2 TEL | [77] exit 255 in 0.23 secs.
+  47.4 TEL | [78] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  47.4  66 | Handling connection for 55381
+  47.6  66 | E0412 17:25:16.508099   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:16 socat[23616] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  47.6 TEL | [78] exit 255 in 0.18 secs.
+  47.9 TEL | [79] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  47.9  66 | Handling connection for 55381
+  48.0  66 | E0412 17:25:16.931726   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:16 socat[23650] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  48.0 TEL | [79] exit 255 in 0.18 secs.
+  48.3 TEL | [80] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  48.3  66 | Handling connection for 55381
+  48.4  66 | E0412 17:25:17.339960   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:17 socat[23658] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  48.4 TEL | [80] exit 255 in 0.12 secs.
+  48.7 TEL | [81] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  48.7  66 | Handling connection for 55381
+  48.8  66 | E0412 17:25:17.730276   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:17 socat[23660] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  48.8 TEL | [81] exit 255 in 0.18 secs.
+  49.1 TEL | [82] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  49.1  66 | Handling connection for 55381
+  49.3  66 | E0412 17:25:18.182660   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:18 socat[23662] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  49.3 TEL | [82] exit 255 in 0.18 secs.
+  49.5 TEL | [83] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  49.5  66 | Handling connection for 55381
+  49.7  66 | E0412 17:25:18.585286   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:18 socat[23663] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  49.7 TEL | [83] exit 255 in 0.18 secs.
+  49.9 TEL | [84] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  50.0  66 | Handling connection for 55381
+  50.1  66 | E0412 17:25:19.027120   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:19 socat[23664] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  50.1 TEL | [84] exit 255 in 0.18 secs.
+  50.4 TEL | [85] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  50.4  66 | Handling connection for 55381
+  50.5  66 | E0412 17:25:19.469787   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:19 socat[23667] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  50.6 TEL | [85] exit 255 in 0.18 secs.
+  50.8 TEL | [86] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  50.8  66 | Handling connection for 55381
+  51.0  66 | E0412 17:25:19.899260   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:19 socat[23669] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  51.0 TEL | [86] exit 255 in 0.18 secs.
+  51.2 TEL | [87] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  51.3  66 | Handling connection for 55381
+  51.4  66 | E0412 17:25:20.298437   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:20 socat[23670] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  51.4 TEL | [87] exit 255 in 0.17 secs.
+  51.7 TEL | [88] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  51.7  66 | Handling connection for 55381
+  51.8  66 | E0412 17:25:20.731041   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:20 socat[23673] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  51.8 TEL | [88] exit 255 in 0.18 secs.
+  52.1 TEL | [89] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  52.1  66 | Handling connection for 55381
+  52.3  66 | E0412 17:25:21.197212   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:21 socat[23674] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  52.3 TEL | [89] exit 255 in 0.18 secs.
+  52.5 TEL | [90] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  52.5  66 | Handling connection for 55381
+  52.7  66 | E0412 17:25:21.630777   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:21 socat[23677] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  52.7 TEL | [90] exit 255 in 0.18 secs.
+  53.0 TEL | [91] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  53.0  66 | Handling connection for 55381
+  53.1  66 | E0412 17:25:22.019021   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:21 socat[23679] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  53.1 TEL | [91] exit 255 in 0.18 secs.
+  53.4 TEL | [92] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  53.4  66 | Handling connection for 55381
+  53.5  66 | E0412 17:25:22.461151   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:22 socat[23681] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  53.6 TEL | [92] exit 255 in 0.18 secs.
+  53.8 TEL | [93] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  53.8  66 | Handling connection for 55381
+  54.0  66 | E0412 17:25:22.895518   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:22 socat[23683] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  54.0 TEL | [93] exit 255 in 0.18 secs.
+  54.3 TEL | [94] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  54.3  66 | Handling connection for 55381
+  54.4  66 | E0412 17:25:23.323381   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:23 socat[23685] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  54.4 TEL | [94] exit 255 in 0.17 secs.
+  54.7 TEL | [95] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  54.7  66 | Handling connection for 55381
+  54.8  66 | E0412 17:25:23.743253   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:23 socat[23687] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  54.8 TEL | [95] exit 255 in 0.13 secs.
+  55.1 TEL | [96] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  55.1  66 | Handling connection for 55381
+  55.2  66 | E0412 17:25:24.134436   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:24 socat[23688] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  55.2 TEL | [96] exit 255 in 0.18 secs.
+  55.5 TEL | [97] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  55.5  66 | Handling connection for 55381
+  55.6  66 | E0412 17:25:24.573910   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:24 socat[23690] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  55.7 TEL | [97] exit 255 in 0.18 secs.
+  55.9 TEL | [98] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  55.9  66 | Handling connection for 55381
+  56.1  66 | E0412 17:25:25.006323   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:24 socat[23693] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  56.1 TEL | [98] exit 255 in 0.18 secs.
+  56.4 TEL | [99] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  56.4  66 | Handling connection for 55381
+  56.6  66 | E0412 17:25:25.558553   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:25 socat[23695] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  56.6 TEL | [99] exit 255 in 0.28 secs.
+  56.9 TEL | [100] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  56.9  66 | Handling connection for 55381
+  57.0  66 | E0412 17:25:25.963440   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:25 socat[23696] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  57.1 TEL | [100] exit 255 in 0.18 secs.
+  57.3 TEL | [101] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  57.3  66 | Handling connection for 55381
+  57.5  66 | E0412 17:25:26.407369   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:26 socat[23701] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  57.5 TEL | [101] exit 255 in 0.17 secs.
+  57.8 TEL | [102] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  57.8  66 | Handling connection for 55381
+  57.9  66 | E0412 17:25:26.819473   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:26 socat[23728] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  57.9 TEL | [102] exit 255 in 0.17 secs.
+  58.2 TEL | [103] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  58.2  66 | Handling connection for 55381
+  58.4  66 | E0412 17:25:27.379989   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:27 socat[23751] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  58.5 TEL | [103] exit 255 in 0.28 secs.
+  58.7 TEL | [104] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  58.7  66 | Handling connection for 55381
+  58.9  66 | E0412 17:25:27.845867   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:27 socat[23791] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  58.9 TEL | [104] exit 255 in 0.24 secs.
+  59.2 TEL | [105] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  59.2  66 | Handling connection for 55381
+  59.4  66 | E0412 17:25:28.289605   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:28 socat[23792] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  59.4 TEL | [105] exit 255 in 0.18 secs.
+  59.6 TEL | [106] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  59.6  66 | Handling connection for 55381
+  59.8  66 | E0412 17:25:28.693131   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:28 socat[23795] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  59.8 TEL | [106] exit 255 in 0.13 secs.
+  60.0 TEL | [107] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  60.0  66 | Handling connection for 55381
+  60.2  66 | E0412 17:25:29.087046   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:29 socat[23796] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  60.2 TEL | [107] exit 255 in 0.18 secs.
+  60.5 TEL | [108] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  60.5  66 | Handling connection for 55381
+  60.6  66 | E0412 17:25:29.505159   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:29 socat[23798] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  60.6 TEL | [108] exit 255 in 0.13 secs.
+  60.8 TEL | [109] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  60.8  66 | Handling connection for 55381
+  61.0  66 | E0412 17:25:29.941781   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:29 socat[23799] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  61.1 TEL | [109] exit 255 in 0.22 secs.
+  61.3 TEL | [110] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  61.3  66 | Handling connection for 55381
+  61.4  66 | E0412 17:25:30.374438   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:30 socat[23802] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  61.5 TEL | [110] exit 255 in 0.17 secs.
+  61.7 TEL | [111] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  61.7  66 | Handling connection for 55381
+  61.9  66 | E0412 17:25:30.801365   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:30 socat[23803] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  61.9 TEL | [111] exit 255 in 0.18 secs.
+  62.2 TEL | [112] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  62.2  66 | Handling connection for 55381
+  62.3  66 | E0412 17:25:31.237965   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:31 socat[23805] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  62.3 TEL | [112] exit 255 in 0.18 secs.
+  62.6 TEL | [113] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  62.6  66 | Handling connection for 55381
+  62.9  66 | E0412 17:25:31.805143   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:31 socat[23807] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  62.9 TEL | [113] exit 255 in 0.33 secs.
+  63.2 TEL | [114] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  63.2  66 | Handling connection for 55381
+  63.6  66 | E0412 17:25:32.560909   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:32 socat[23810] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  63.7 TEL | [114] exit 255 in 0.50 secs.
+  63.9 TEL | [115] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  63.9  66 | Handling connection for 55381
+  64.3  66 | E0412 17:25:33.244016   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:33 socat[23812] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  64.4 TEL | [115] exit 255 in 0.44 secs.
+  64.6 TEL | [116] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  64.6  66 | Handling connection for 55381
+  65.0  66 | E0412 17:25:33.925999   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:33 socat[23813] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  65.0 TEL | [116] exit 255 in 0.39 secs.
+  65.3 TEL | [117] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  65.3  66 | Handling connection for 55381
+  65.7  66 | E0412 17:25:34.648804   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:34 socat[23815] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  65.8 TEL | [117] exit 255 in 0.49 secs.
+  66.0 TEL | [118] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  66.0  66 | Handling connection for 55381
+  66.1  66 | E0412 17:25:35.082134   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:35 socat[23817] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  66.2 TEL | [118] exit 255 in 0.18 secs.
+  66.4 TEL | [119] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  66.4  66 | Handling connection for 55381
+  66.6  66 | E0412 17:25:35.514176   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:35 socat[23820] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  66.6 TEL | [119] exit 255 in 0.18 secs.
+  66.9 TEL | [120] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  66.9  66 | Handling connection for 55381
+  67.0  66 | E0412 17:25:35.937274   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:35 socat[23821] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  67.0 TEL | [120] exit 255 in 0.18 secs.
+  67.3 TEL | [121] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  67.3  66 | Handling connection for 55381
+  67.4  66 | E0412 17:25:36.371162   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:36 socat[23824] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  67.5 TEL | [121] exit 255 in 0.17 secs.
+  67.7 TEL | [122] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  67.7  66 | Handling connection for 55381
+  67.9  66 | E0412 17:25:36.789275   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:36 socat[23825] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  67.9 TEL | [122] exit 255 in 0.18 secs.
+  68.2 TEL | [123] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  68.2  66 | Handling connection for 55381
+  68.3  66 | E0412 17:25:37.219677   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:37 socat[23829] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  68.3 TEL | [123] exit 255 in 0.18 secs.
+  68.6 TEL | [124] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  68.6  66 | Handling connection for 55381
+  68.7  66 | E0412 17:25:37.640250   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:37 socat[23831] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  68.8 TEL | [124] exit 255 in 0.17 secs.
+  69.0 TEL | [125] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  69.0  66 | Handling connection for 55381
+  69.1  66 | E0412 17:25:38.076768   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:38 socat[23849] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  69.2 TEL | [125] exit 255 in 0.18 secs.
+  69.4 TEL | [126] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  69.5  66 | Handling connection for 55381
+  69.6  66 | E0412 17:25:38.528951   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:38 socat[23873] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  69.6 TEL | [126] exit 255 in 0.18 secs.
+  69.9 TEL | [127] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  69.9  66 | Handling connection for 55381
+  70.0  66 | E0412 17:25:38.981103   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:38 socat[23875] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  70.1 TEL | [127] exit 255 in 0.18 secs.
+  70.3 TEL | [128] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  70.3  66 | Handling connection for 55381
+  70.5  66 | E0412 17:25:39.437202   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:39 socat[23877] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  70.5 TEL | [128] exit 255 in 0.23 secs.
+  70.8 TEL | [129] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  70.8  66 | Handling connection for 55381
+  70.9  66 | E0412 17:25:39.869646   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:39 socat[23884] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  71.0 TEL | [129] exit 255 in 0.18 secs.
+  71.2 TEL | [130] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  71.2  66 | Handling connection for 55381
+  71.3  66 | E0412 17:25:40.278534   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:40 socat[23885] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  71.4 TEL | [130] exit 255 in 0.18 secs.
+  71.7 TEL | [131] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  71.7  66 | Handling connection for 55381
+  71.8  66 | E0412 17:25:40.718845   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:40 socat[23888] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  71.8 TEL | [131] exit 255 in 0.17 secs.
+  72.1 TEL | [132] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  72.1  66 | Handling connection for 55381
+  72.2  66 | E0412 17:25:41.161602   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:41 socat[23889] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  72.3 TEL | [132] exit 255 in 0.18 secs.
+  72.5 TEL | [133] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  72.5  66 | Handling connection for 55381
+  72.7  66 | E0412 17:25:41.584756   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:41 socat[23891] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  72.7 TEL | [133] exit 255 in 0.18 secs.
+  72.9 TEL | [134] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  72.9  66 | Handling connection for 55381
+  73.1  66 | E0412 17:25:41.989635   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:41 socat[23894] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  73.1 TEL | [134] exit 255 in 0.13 secs.
+  73.3 TEL | [135] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 55381 telepresence@127.0.0.1 /bin/true
+  73.3  66 | Handling connection for 55381
+  73.4  66 | E0412 17:25:42.368899   28703 portforward.go:400] an error occurred forwarding 55381 -> 8022: error forwarding port 8022 to pod 6d5a14bcd95a3e0ecd9bc1bf60fbf8dd44af190a40cc02fd408c8b37e9250f3b, uid : failed to execute portforward in network namespace "/var/run/netns/cni-f8862091-0ba2-3989-214e-2cb3d7a8d8c9": socat command returns error: exit status 1, stderr: "2020/04/12 17:25:42 socat[23895] E connect(5, AF=2 127.0.0.1:8022, 16): Connection refused\n"
+  73.5 TEL | [135] exit 255 in 0.18 secs.
+  73.5 TEL | SSH timed out. Pod info follows.
+  73.5 TEL | [136] Running: kubectl --context kube-pi-remote --namespace windstats describe pod telepresence-1586708668-932211-28628-56b57d68dc-h2bh9
+  73.8 136 | Name:         telepresence-1586708668-932211-28628-56b57d68dc-h2bh9
+  73.8 136 | Namespace:    windstats
+  73.8 136 | Priority:     0
+  73.8 136 | Node:         kube02/192.168.0.25
+  73.8 136 | Start Time:   Sun, 12 Apr 2020 17:24:47 +0100
+  73.8 136 | Labels:       pod-template-hash=56b57d68dc
+  73.8 136 |               telepresence=325a975adaac43ca91e3a98e9223f5c8
+  73.8 136 | Annotations:  <none>
+  73.8 136 | Status:       Running
+  73.8 136 | IP:           10.42.2.39
+  73.8 136 | IPs:
+  73.8 136 |   IP:           10.42.2.39
+  73.8 136 | Controlled By:  ReplicaSet/telepresence-1586708668-932211-28628-56b57d68dc
+  73.8 136 | Containers:
+  73.8 136 |   telepresence-1586708668-932211-28628:
+  73.8 136 |     Container ID:   containerd://ce20a5a455128324ab5776ea0280d0a0ec71cf09f41c8d682210e7b8bf78d873
+  73.8 136 |     Image:          datawire/telepresence-k8s:0.104
+  73.8 136 |     Image ID:       docker.io/datawire/telepresence-k8s@sha256:64c75f15bc1c3a07fa43d5c4a3768b0972759c9e732b5e442ae086398a9220a0
+  73.8 136 |     Port:           <none>
+  73.8 136 |     Host Port:      <none>
+  73.8 136 |     State:          Waiting
+  73.8 136 |       Reason:       CrashLoopBackOff
+  73.8 136 |     Last State:     Terminated
+  73.8 136 |       Reason:       Error
+  73.8 136 |       Exit Code:    1
+  73.8 136 |       Started:      Sun, 12 Apr 2020 17:25:27 +0100
+  73.8 136 |       Finished:     Sun, 12 Apr 2020 17:25:27 +0100
+  73.8 136 |     Ready:          False
+  73.8 136 |     Restart Count:  2
+  73.8 136 |     Limits:
+  73.8 136 |       cpu:     1
+  73.8 136 |       memory:  256Mi
+  73.8 136 |     Requests:
+  73.8 136 |       cpu:        25m
+  73.8 136 |       memory:     64Mi
+  73.8 136 |     Environment:  <none>
+  73.8 136 |     Mounts:
+  73.8 136 |       /var/run/secrets/kubernetes.io/serviceaccount from default-token-2gzwq (ro)
+  73.8 136 | Conditions:
+  73.8 136 |   Type              Status
+  73.8 136 |   Initialized       True
+  73.8 136 |   Ready             False
+  73.8 136 |   ContainersReady   False
+  73.8 136 |   PodScheduled      True
+  73.8 136 | Volumes:
+  73.8 136 |   default-token-2gzwq:
+  73.8 136 |     Type:        Secret (a volume populated by a Secret)
+  73.8 136 |     SecretName:  default-token-2gzwq
+  73.8 136 |     Optional:    false
+  73.8 136 | QoS Class:       Burstable
+  73.8 136 | Node-Selectors:  <none>
+  73.8 136 | Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+  73.8 136 |                  node.kubernetes.io/unreachable:NoExecute for 300s
+  73.8 136 | Events:
+  73.8 136 |   Type     Reason     Age                From               Message
+  73.8 136 |   ----     ------     ----               ----               -------
+  73.8 136 |   Normal   Scheduled  <unknown>          default-scheduler  Successfully assigned windstats/telepresence-1586708668-932211-28628-56b57d68dc-h2bh9 to kube02
+  73.8 136 |   Normal   Pulling    54s                kubelet, kube02    Pulling image "datawire/telepresence-k8s:0.104"
+  73.8 136 |   Normal   Pulled     35s                kubelet, kube02    Successfully pulled image "datawire/telepresence-k8s:0.104"
+  73.8 136 |   Normal   Pulled     16s (x2 over 31s)  kubelet, kube02    Container image "datawire/telepresence-k8s:0.104" already present on machine
+  73.8 136 |   Normal   Created    16s (x3 over 32s)  kubelet, kube02    Created container telepresence-1586708668-932211-28628
+  73.8 136 |   Normal   Started    15s (x3 over 32s)  kubelet, kube02    Started container telepresence-1586708668-932211-28628
+  73.8 136 |   Warning  BackOff    2s (x4 over 29s)   kubelet, kube02    Back-off restarting failed container
+  73.9 TEL | [136] ran in 0.39 secs.
+  75.5 TEL | [137] Running: sudo -n echo -n
+  75.5 TEL | [137] ran in 0.03 secs.
+  75.9 TEL | CRASH: SSH to the cluster failed to start. See logfile.
+  75.9 TEL | Traceback (most recent call last):
+  75.9 TEL |   File "/usr/local/bin/telepresence/telepresence/cli.py", line 135, in crash_reporting
+  75.9 TEL |     yield
+  75.9 TEL |   File "/usr/local/bin/telepresence/telepresence/main.py", line 68, in main
+  75.9 TEL |     socks_port, ssh = do_connect(runner, remote_info)
+  75.9 TEL |   File "/usr/local/bin/telepresence/telepresence/connect/connect.py", line 119, in do_connect
+  75.9 TEL |     args.from_pod
+  75.9 TEL |   File "/usr/local/bin/telepresence/telepresence/connect/connect.py", line 70, in connect
+  75.9 TEL |     raise RuntimeError("SSH to the cluster failed to start. See logfile.")
+  75.9 TEL | RuntimeError: SSH to the cluster failed to start. See logfile.
+  75.9 TEL | (calling crash reporter...)
+ 105.6 TEL | [138] Running: sudo -n echo -n
+ 105.6 TEL | [138] ran in 0.03 secs.
+ 123.5 >>> | Exit cleanup in progress
+ 123.5 TEL | (Cleanup) Kill BG process [66] kubectl port-forward
+ 123.5 TEL | [66] kubectl port-forward: exit -15
+ 123.5 TEL | (Cleanup) Kill BG process [65] kubectl logs
+ 123.5 TEL | (Cleanup) Delete new deployment
+ 123.5 >>> | Cleaning up Deployment telepresence-1586708668-932211-28628
+ 123.5 TEL | [139] Running: kubectl --context kube-pi-remote --namespace windstats delete --ignore-not-found svc,deploy --selector=telepresence=325a975adaac43ca91e3a98e9223f5c8
+ 123.8 139 | deployment.apps "telepresence-1586708668-932211-28628" deleted
+ 123.9 TEL | [139] ran in 0.44 secs.
+ 123.9 TEL | (Cleanup) Kill sudo privileges holder
+ 123.9 TEL | (Cleanup) Stop time tracking
+ 123.9 TEL | END SPAN main.py:40(main)  123.9s
+ 123.9 TEL | (Cleanup) Remove temporary directory
+ 123.9 TEL | (Cleanup) Save caches
+ 124.6 TEL | (sudo privileges holder thread exiting)

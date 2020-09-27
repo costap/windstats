@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WindStatsComponent implements OnInit {
 
-  constructor() { }
+  allowSomething: boolean = false;
+  status = "Off";
+  username: string = "default";
+  servers = ['Testserver', 'Testserver 2']
+
+  constructor() { 
+    this.status = Math.random() > 0.5 ? "Off" : "On";
+    setTimeout(()=>{
+      this.allowSomething = true;
+    }, 2000);
+  }
 
   ngOnInit(): void {
   }
 
+  onDoSomething(){
+    this.status = "On";
+    this.servers.push("New Server");
+  }
+
+  getColor() {
+    return this.status === 'On' ? 'red' : 'greed';
+  }
 }

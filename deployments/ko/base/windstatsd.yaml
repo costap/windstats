@@ -27,8 +27,10 @@ spec:
       labels:
         app: windstatsd
     spec:
+      imagePullSecrets:
+        - name: ecr
       containers:
-      - image: github.com/costap/windstats/cmd/windstatsd
+      - image: ko://github.com/costap/windstats/cmd/windstatsd
         name: windstatsd
         ports:
         - containerPort: 8080

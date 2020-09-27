@@ -14,9 +14,12 @@ spec:
       labels:
         app: windstatsweb
     spec:
+      imagePullSecrets:
+        - name: ecr
       containers:
-      - image: registry:5000/windstats-web:latest
+      - image: 888435310358.dkr.ecr.eu-west-1.amazonaws.com/windstats/windstatsweb:latest
         name: windstatsweb
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         readinessProbe:
