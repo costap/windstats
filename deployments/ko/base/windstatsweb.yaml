@@ -17,7 +17,7 @@ spec:
       imagePullSecrets:
         - name: ecr
       containers:
-      - image: 888435310358.dkr.ecr.eu-west-1.amazonaws.com/windstats/windstatsweb:latest
+      - image: docker.io/pedrofcosta/windstatsweb:latest
         name: windstatsweb
         imagePullPolicy: Always
         ports:
