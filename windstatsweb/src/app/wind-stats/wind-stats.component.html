@@ -1,9 +1,3 @@
 <app-overview></app-overview>
 <app-realtime></app-realtime>
 <app-fiveminavg></app-fiveminavg>
-<button type="button" class="btn btn-light" 
-    [disabled]="!allowSomething"
-    (click)="onDoSomething()">Do Something</button>
-<p [ngStyle]="{backgroundColor: getColor()}"
-   [ngClass]="{online: status === 'Odd'}">{{ status }}</p>
-<p *ngFor="let server of servers">{{ server }}</p>
